@@ -7,22 +7,16 @@ import AuthModal from "../../components/auth/AuthModal";
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
 
-   useEffect(() => {
-    document.body.style.overflow = showModal ? "hidden" : "auto";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [showModal]);
+  
 
   return (
-    < >
+    <div className={`relative h-screen ${showModal ? " overflow-hidden" : ""}`}>
       <Navbar setShowModal={setShowModal} showModal={showModal} />
       <HeroSection />
       <NewListing />
 
       {showModal && <AuthModal setShowModal={setShowModal} />}
-    </>
+    </div>
   );
 };
 
