@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
+@theme {
+  --color-primary: #f38030;
+  --color-secondary: #1c1c1c;
+  --color-light: #f5f1eb;
+  /* --color-dark: #111827; */
+}
+
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding-inline: 20px;
+  box-sizing: border-box;
+}
+
+.hero {
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.8) 10%,transparent),
+    url('./assets/hero-bg.jpg');
+    
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
