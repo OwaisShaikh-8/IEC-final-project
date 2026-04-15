@@ -1,15 +1,19 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { signupSchema } from "../../constants/form/form-schemas/auth-schema";
 import { signUpFields } from "../../constants/form/form-fields/AuthFields";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const SignUp = () => {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(signupSchema),
   });
@@ -19,40 +23,43 @@ const SignUp = () => {
     reset();
   };
 
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {signUpFields.map((field, index) => (
-        <div key={index} className="mb-3">
+        <div key={index} className="space-y-1">
           <label
             htmlFor={field.name}
-            className="block text-sm font-medium text-secondary mb-1"
+            className="block text-sm text-secondary/70"
           >
             {field.label}
           </label>
 
-          <input
+          <Input
+          size="lg"
             id={field.name}
             type={field.type}
             placeholder={field.placeholder}
             {...register(field.name)}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+           
           />
 
           {errors[field.name] && (
-            <p className="text-red-500 text-sm mt-1">
+            <p className="text-red-500 text-xs mt-2">
               {errors[field.name]?.message}
             </p>
           )}
         </div>
       ))}
 
-      <button
+      <Button
+        width="full"
+        variant="outline"
+        size="lg"
         type="submit"
-        className="w-full bg-primary text-white py-2 rounded-md hover:bg-primary/90 transition-all duration-300 mt-2"
+        className="w-full bg-primary text-white py-2 rounded-md hover:bg-primary/90 transition-all duration-300 mt-2 "
       >
-        Signup
-      </button>
+        Login
+      </Button>
     </form>
   );
 };
